@@ -1,8 +1,8 @@
 ---
 name: feishu-markdown-table-fix
-description: "Fix Hermes Agent Feishu Markdown rendering: convert MD tables/code blocks/headers to CardKit 2.0 interactive cards."
+description: "Fix Hermes Agent Feishu Markdown rendering: convert MD tables/code blocks/headers to CardKit 2.0 interactive cards. Trigger: 检测 markdown render."
 tags: [hermes, feishu, markdown, cardkit, render, gateway]
-version: "1.1.0"
+version: "1.2.0"
 created: "2026-05-23"
 updated: "2026-06-11"
 ---
@@ -139,9 +139,33 @@ kill -TERM [PID]                     # 等自动重启后测试
 
 发送包含标题、表格、代码块、粗体、列表的消息，所有格式应正常渲染。完整测试模板见下节；网关重启后必须跑一遍测试并让用户逐项确认。
 
+## Markdown 渲染测试工作流
+
+**触发词：**「检测 markdown render」「检测一下我现在的 markdown render 怎么样了？」
+
+**两步流程（已验证 2026-06-11）：**
+
+1. **发送标准测试模板**（下节完整内容）到用户飞书 DM
+2. **紧跟一条检查清单**，请用户对照 DM 逐项反馈
+
+### Step 2 跟进消息（复制发送）
+
+```markdown
+测试消息已发送，请查看你的飞书 DM，告诉我哪些格式有问题：
+
+- ✅ 标题 是否渲染（而不是显示 ## 源码）
+- ✅ 表格 是否渲染成网格（而不是显示 |...| 源码）
+- ✅ 代码块 是否有背景色/语法高亮
+- ✅ 粗体/斜体/删除线 是否生效
+- ✅ 引用块 是否有左边框
+- ✅ 链接 是否可点击
+```
+
+用户反馈后记录哪些元素仍显示源码，再针对性排查 `feishu.py` 或 CardKit 转换逻辑。
+
 ## Markdown 渲染测试（标准模板）
 
-用户说「检测 markdown render」或网关重启后，**直接发送以下消息**到飞书 DM，然后请用户对照检查清单反馈：
+用户说「检测 markdown render」或网关重启后，**直接发送以下消息**到飞书 DM：
 
 ```markdown
 **Markdown 渲染测试**

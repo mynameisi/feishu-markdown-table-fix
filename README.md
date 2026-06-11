@@ -18,7 +18,10 @@
 
 1. 按 `SKILL.md` 修改 `feishu.py`
 2. 重启网关（`kill -TERM` + s6 自动拉起）
-3. 发送 **Markdown 渲染测试** 标准模板到飞书 DM 验证
+3. 发送 **Markdown 渲染测试** 标准模板到飞书 DM
+4. 紧跟检查清单，请用户逐项确认渲染效果
+
+**触发词：**「检测 markdown render」「检测一下我现在的 markdown render 怎么样了？」
 
 ## 文件
 
