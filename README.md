@@ -1,4 +1,4 @@
-# feishu-markdown-table-fix
+# feishu-markdown-table-fix 🔧
 
 修复 Hermes Agent 向飞书发送 Markdown 时表格/代码块/标题显示为源码的问题。
 
@@ -8,7 +8,11 @@
 
 ## 解决方案
 
-修改 `/opt/hermes/gateway/platforms/feishu.py`，将 Markdown 内容转为 **CardKit 2.0 interactive card**。
+修改 `/opt/hermes/gateway/platforms/feishu.py`，将 Markdown 内容转为 **CardKit 2.0 interactive card**：
+
+- **表格** → `column_set` 布局，表头灰底加粗，数据行交替底色
+- **代码块** → `div` + `lark_md` 标签
+- **标题** → 预处理为加粗文本
 
 ## 工作流
 
@@ -21,4 +25,10 @@
 | 文件 | 说明 |
 |:-----|:-----|
 | `SKILL.md` | 完整修改步骤 + 重启流程 + 渲染测试模板 |
-| `references/complete-code.md` | 完整代码参考 |
+| `feishu.py` | 完整修改后文件 |
+| `MODIFICATIONS.md` | 详细修改步骤 |
+| `references/complete-code.md` | 代码参考 |
+
+## License
+
+MIT
